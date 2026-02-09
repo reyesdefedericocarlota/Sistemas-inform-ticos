@@ -19,15 +19,18 @@ fi
 
 ```bash
 #!/bin/bash
-archivo="$1"
-if [ -f "$archivo" ]; then
-    # Recorrer los argumentos (palabras) en orden inverso
-    for ((i=$#; i>=2; i--)); do
-        echo "${!i} "
+if [ $# -eq 2 ]; then
+    # Recoger los parámetros
+    palabra=$1
+    numero=$2
+
+    # Crear archivos con números pares
+    for ((i=2; i<=numero; i+=2)); do
+        touch "${palabra}${palabra}${i}.txt"
     done
-    echo
 else
-    echo "No se puede hacer, el archivo '$archivo' no existe."
+    echo "Error: Debe ejecutar el script con dos parámetros."
+    echo "Uso: $0 <palabra> <numero>"
 fi
 ```
 
